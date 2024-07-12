@@ -1,0 +1,11 @@
+E:\Dev\Windows Forms\MyDataHub\MyDataHub\bin\Debug\MyDataHub.exe.config
+E:\Dev\Windows Forms\MyDataHub\MyDataHub\bin\Debug\MyDataHub.exe
+E:\Dev\Windows Forms\MyDataHub\MyDataHub\bin\Debug\MyDataHub.pdb
+E:\Dev\Windows Forms\MyDataHub\MyDataHub\obj\Debug\MyDataHub.csproj.AssemblyReference.cache
+E:\Dev\Windows Forms\MyDataHub\MyDataHub\obj\Debug\MyDataHub.csproj.SuggestedBindingRedirects.cache
+E:\Dev\Windows Forms\MyDataHub\MyDataHub\obj\Debug\MyDataHub.Form1.resources
+E:\Dev\Windows Forms\MyDataHub\MyDataHub\obj\Debug\MyDataHub.Properties.Resources.resources
+E:\Dev\Windows Forms\MyDataHub\MyDataHub\obj\Debug\MyDataHub.csproj.GenerateResource.cache
+E:\Dev\Windows Forms\MyDataHub\MyDataHub\obj\Debug\MyDataHub.csproj.CoreCompileInputs.cache
+E:\Dev\Windows Forms\MyDataHub\MyDataHub\obj\Debug\MyDataHub.exe
+E:\Dev\Windows Forms\MyDataHub\MyDataHub\obj\Debug\MyDataHub.pdb
