@@ -23,6 +23,8 @@ export default { //ส่งออกข้อมูล
 </script>
 
 <!-- CSS -->
-<style>
-
+<style scoped>
+h1{
+  background-color: orange;
+}
 </style>
