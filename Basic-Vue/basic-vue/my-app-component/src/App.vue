@@ -1,7 +1,6 @@
 <!-- ส่วนการแสดงผล -->
 <template>
   <div>
-    <h1>App Component</h1>
     <FormComponent/>
     <ListData />
 
@@ -21,10 +20,3 @@ export default { //ส่งออกข้อมูล
   }
 }
 </script>
-
-<!-- CSS -->
-<style scoped>
-h1{
-  background-color: orange;
-}
-</style>
