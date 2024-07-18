@@ -2,7 +2,7 @@
 <template>
   <div>
     <FormComponent/>
-    <ListData />
+    <ListData :employees="employees" />
 
   </div>
 </template>
@@ -17,6 +17,18 @@ export default { //ส่งออกข้อมูล
   components: { //ประกาศใช้ ListData component 
     ListData,
     FormComponent
+  },
+  data(){
+    return{
+      employees:[
+        {name:"ก้อง",salary:40000},
+        {name:"แก้ม",salary:30000},
+        {name:"โจโจ้",salary:20000},
+        {name:"สมปอง",salary:15000},
+        {name:"ชาลี",salary:18000},
+        {name:"ตุ๊กตา",salary:50000}
+      ]
+    }
   }
 }
 </script>
