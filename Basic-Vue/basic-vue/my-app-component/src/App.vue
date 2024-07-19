@@ -23,10 +23,9 @@ export default { //ส่งออกข้อมูล
       employees:[
         {name:"ก้อง",salary:40000},
         {name:"แก้ม",salary:30000},
-        {name:"โจโจ้",salary:20000},
-        {name:"สมปอง",salary:15000},
-        {name:"ชาลี",salary:18000},
-        {name:"ตุ๊กตา",salary:50000}
+        {name:"โตโต้",salary:900},
+        {name:"สมปอง"},
+        {name:"ตั๊กแตน"}
       ]
     }
   }
