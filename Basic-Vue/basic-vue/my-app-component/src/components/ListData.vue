@@ -8,6 +8,8 @@
       :salary="item.salary"
       :department="item.department"
       :isVisible="item.isVisible"
+      @show="toggleVisible"
+      @delete="removeEmp"
     />
   </ul>
 </template>
@@ -30,6 +32,21 @@ export default {
       ],
     };
   },
+  methods:{
+    toggleVisible(id){
+      this.employees = this.employees.map((item)=>{
+        if(item.id === id){
+          return {...item,isVisible:!item.isVisible}
+        }
+        return item
+      })
+    },
+    removeEmp(id){
+      this.employees = this.employees.filter((item)=>{
+        return item.id !== id
+      })
+    }
+  }
 };
 </script>
 
