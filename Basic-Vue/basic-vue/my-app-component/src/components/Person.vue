@@ -1,5 +1,5 @@
 <template>
-  <li>
+  <CardSlot>
     <h1>{{ name }}</h1>
     <button @click="showDescription(id)">ดูรายละเอียด</button> &nbsp;
     <button @click="deleteEmp(id)">ลบข้อมูล</button>
@@ -8,12 +8,16 @@
         <p>เงินเดือน: {{ salary }} บาท, ตำแหน่งงาน: {{ department }}</p>
       </div>
     </transition>
-  </li>
+  </CardSlot>
 </template>
 
 <script>
+import CardSlot from "./CardSlot.vue";
 export default {
   name: "PersonData",
+  components:{
+    CardSlot
+  },
   props: {
     id: {
       type: Number,
@@ -48,15 +52,6 @@ export default {
 </script>
 
 <style scoped>
-li {
-  margin: 1rem 0;
-  font-size: 1.25rem;
-  font-weight: bold;
-  background: #8ddba4;
-  padding: 0.5rem;
-  color: #1f1f1f;
-  border-radius: 25px;
-}
 button {
   font: inherit;
   cursor: pointer;
