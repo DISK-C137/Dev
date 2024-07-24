@@ -1,13 +1,19 @@
 <template>
   <CardSlot>
-    <h1>{{ name }}</h1>
-    <button @click="showDescription(id)">ดูรายละเอียด</button> &nbsp;
-    <button @click="deleteEmp(id)">ลบข้อมูล</button>
-    <transition name="fade">
-      <div v-show="isVisible">
-        <p>เงินเดือน: {{ salary }} บาท, ตำแหน่งงาน: {{ department }}</p>
-      </div>
-    </transition>
+    <template v-slot:card-header>
+      <h1>{{ name }}</h1>
+    </template>
+    <template v-slot:card-button>
+      <button @click="showDescription(id)">ดูรายละเอียด</button> &nbsp;
+      <button @click="deleteEmp(id)">ลบข้อมูล</button>
+    </template>
+    <template v-slot:card-content>
+      <transition name="fade">
+        <div v-show="isVisible">
+          <p>เงินเดือน: {{ salary }} บาท, ตำแหน่งงาน: {{ department }}</p>
+        </div>
+      </transition>
+    </template>
   </CardSlot>
 </template>
 
@@ -15,8 +21,8 @@
 import CardSlot from "./CardSlot.vue";
 export default {
   name: "PersonData",
-  components:{
-    CardSlot
+  components: {
+    CardSlot,
   },
   props: {
     id: {
@@ -61,10 +67,10 @@ button {
   padding: 0.05rem 1rem;
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.26);
 }
-.fade-enter-from{
+.fade-enter-from {
   opacity: 0;
 }
-.fade-enter-active{
+.fade-enter-active {
   transition: all 0.5s linear;
 }
 </style>
