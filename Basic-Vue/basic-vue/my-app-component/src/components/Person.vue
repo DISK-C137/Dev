@@ -3,16 +3,18 @@
     <template v-slot:card-header>
       <h1>{{ name }}</h1>
     </template>
-    <template v-slot:card-button>
+    <!-- <template v-slot:card-button>
       <button @click="showDescription(id)">ดูรายละเอียด</button> &nbsp;
       <button @click="deleteEmp(id)">ลบข้อมูล</button>
-    </template>
+    </template> -->
     <template v-slot:card-content>
-      <transition name="fade">
-        <div v-show="isVisible">
-          <p>เงินเดือน: {{ salary }} บาท, ตำแหน่งงาน: {{ department }}</p>
-        </div>
-      </transition>
+      <!-- <transition name="fade">
+        <div v-show="isVisible"> -->
+      <p>เพศ: {{ gender }}, เงินเดือน: {{ salary }} บาท</p>
+      <p>ตำแหน่งงาน: {{ department }}</p>
+      <p>ทักษะด้านภาษา: {{ skill }}</p>
+      <!-- </div>
+      </transition> -->
     </template>
   </CardSlot>
 </template>
@@ -40,20 +42,26 @@ export default {
       type: String,
       required: true,
     },
-    isVisible: {
-      type: Boolean,
+    gender: {
+      type: String
     },
+    skill: {
+      type: Array
+    }
+    // isVisible: {
+    //   type: Boolean,
+    // },
   },
-  methods: {
-    showDescription(id) {
-      console.log(id);
-      this.$emit("show", id);
-    },
-    deleteEmp(id) {
-      console.log(id);
-      this.$emit("delete", id);
-    },
-  },
+  // methods: {
+  //   showDescription(id) {
+  //     console.log(id);
+  //     this.$emit("show", id);
+  //   },
+  //   deleteEmp(id) {
+  //     console.log(id);
+  //     this.$emit("delete", id);
+  //   },
+  // },
 };
 </script>
 

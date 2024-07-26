@@ -1,6 +1,6 @@
 <template>
   <ul>
-    <Person
+    <!-- <Person
       v-for="item in employees"
       :id="item.id"
       :key="item.id"
@@ -10,6 +10,15 @@
       :isVisible="item.isVisible"
       @show="toggleVisible"
       @delete="removeEmp"
+    /> -->
+    <Person
+      v-for="(item,index) in employees"
+      :key="index"
+      :name="item.name"
+      :salary="item.salary"
+      :department="item.department"
+      :gender="item.gender"
+      :skill="item.skill"
     />
   </ul>
 </template>
@@ -21,32 +30,33 @@ export default {
   components: {
     Person,
   },
-  data() {
-    return {
-      employees: [
-        { id:1, name: "ก้อง รักสยาม", salary: 40000, department:"โปรแกรมเมอร์",isVisible:false},
-        { id:2, name: "แก้ม เรียนดี", salary: 30000, department:"ฝ่ายการตลาด",isVisible:false},
-        { id:3, name: "โตโต้ ขยันทำงาน", salary: 900, department:"โปรแกรมเมอร์",isVisible:false},
-        { id:4, name: "สมปอง ยิ้มเก่ง", department:"กราฟฟิก",isVisible:false},
-        { id:5, name: "ตั๊กแตน เรียนดี", department:"ฝ่ายขาย",isVisible:false},
-      ],
-    };
-  },
-  methods:{
-    toggleVisible(id){
-      this.employees = this.employees.map((item)=>{
-        if(item.id === id){
-          return {...item,isVisible:!item.isVisible}
-        }
-        return item
-      })
-    },
-    removeEmp(id){
-      this.employees = this.employees.filter((item)=>{
-        return item.id !== id
-      })
-    }
-  }
+  // data() {
+  //   return {
+  //     employees: [
+  //       { id:1, name: "ก้อง รักสยาม", salary: 40000, department:"โปรแกรมเมอร์",isVisible:false},
+  //       { id:2, name: "แก้ม เรียนดี", salary: 30000, department:"ฝ่ายการตลาด",isVisible:false},
+  //       { id:3, name: "โตโต้ ขยันทำงาน", salary: 900, department:"โปรแกรมเมอร์",isVisible:false},
+  //       { id:4, name: "สมปอง ยิ้มเก่ง", department:"กราฟฟิก",isVisible:false},
+  //       { id:5, name: "ตั๊กแตน เรียนดี", department:"ฝ่ายขาย",isVisible:false},
+  //     ],
+  //   };
+  // },
+  // methods:{
+  //   toggleVisible(id){
+  //     this.employees = this.employees.map((item)=>{
+  //       if(item.id === id){
+  //         return {...item,isVisible:!item.isVisible}
+  //       }
+  //       return item
+  //     })
+  //   },
+  //   removeEmp(id){
+  //     this.employees = this.employees.filter((item)=>{
+  //       return item.id !== id
+  //     })
+  //   }
+  // },
+  props: ["employees"]
 };
 </script>
 
