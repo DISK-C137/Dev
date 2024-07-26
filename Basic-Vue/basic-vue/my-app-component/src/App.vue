@@ -3,6 +3,7 @@
   <header>
     <h1>ระบบจัดการข้อมูลพนักงาน</h1>
   </header>
+  <FormComponent></FormComponent>
   <section class="employee-content">
     <h2>ข้อมูลพนักงาน</h2>
     <ListData />
@@ -12,6 +13,7 @@
 <!-- ส่วนควบคุมการทำงาน -->
 <script>
 import ListData from "./components/ListData.vue"; //เรียกใช้งาน ListData component
+import FormComponent from "./components/FormComponent.vue";
 
 export default {
   //ส่งออกข้อมูล
@@ -19,6 +21,7 @@ export default {
   components: {
     //ประกาศใช้ ListData component
     ListData,
+    FormComponent,
   },
 };
 </script>
