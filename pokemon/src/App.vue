@@ -15,9 +15,9 @@
           <img :src="pokemon.sprites.front_default" :alt="pokemon.name" class="w-full h-auto mb-2 rounded">
           <!-- ชื่อของ Pokémon -->
           <h2 class="text-lg font-semibold text-center">{{ "Name: " + pokemon.name }}</h2>
-          <!-- ประเภทของ Pokémon -->
+          <!-- ประเภทของ Pokémon แสดงค่าตัวแปรประเภท array-->
           <h2 class="text-lg font-semibold text-center">{{ "Types: " + pokemon.types.map(type => type.type.name).join(', ') }}</h2>
-          <!-- ความสามารถของ Pokémon -->
+          <!-- ความสามารถของ Pokémon แสดงค่าตัวแปรประเภท array-->
           <h2 class="text-lg font-semibold text-center">{{ "Abilities: " + pokemon.abilities.map(ability => ability.ability.name).join(', ') }}</h2>
         </div>
       </div>
