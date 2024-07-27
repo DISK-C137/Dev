@@ -10,42 +10,66 @@
       <!-- ใช้ grid layout เพื่อจัดการการแสดงผล Pokémon เป็นคอลัมน์ -->
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         <!-- วนลูปแสดง Pokémon แต่ละตัวในรูปแบบ card -->
-        <div v-for="pokemon in filteredPokemons" :key="pokemon.id" class="bg-white p-4 rounded-lg shadow-md">
+        <div v-for="pokemon in paginatedPokemons" :key="pokemon.id" class="bg-white p-4 rounded-lg shadow-md">
           <!-- รูปภาพของ Pokémon -->
           <img :src="pokemon.sprites.front_default" :alt="pokemon.name" class="w-full h-auto mb-2 rounded">
           <!-- ชื่อของ Pokémon -->
           <h2 class="text-lg font-semibold text-center">{{ "Name: " + pokemon.name }}</h2>
-          <!-- ประเภทของ Pokémon แสดงค่าตัวแปรประเภท array-->
+          <!-- ประเภทของ Pokémon -->
           <h2 class="text-lg font-semibold text-center">{{ "Types: " + pokemon.types.map(type => type.type.name).join(', ') }}</h2>
-          <!-- ความสามารถของ Pokémon แสดงค่าตัวแปรประเภท array-->
+          <!-- ความสามารถของ Pokémon -->
           <h2 class="text-lg font-semibold text-center">{{ "Abilities: " + pokemon.abilities.map(ability => ability.ability.name).join(', ') }}</h2>
         </div>
+      </div>
+      <!-- ส่วนของ pagination -->
+      <div class="flex justify-center mt-4">
+        <button @click="prevPage" :disabled="currentPage === 1"
+          class="px-4 py-2 bg-blue-500 text-white rounded-lg mr-2 disabled:opacity-50">
+          Previous
+        </button>
+        <span class="px-4 py-2 text-lg font-semibold">{{ `Page ${currentPage} of ${totalPages}` }}</span>
+        <button @click="nextPage" :disabled="currentPage === totalPages"
+          class="px-4 py-2 bg-blue-500 text-white rounded-lg ml-2 disabled:opacity-50">
+          Next
+        </button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import axios from 'axios'; // นำเข้า axios สำหรับการทำ HTTP requests
-import MyNavbar from './components/MyNavbar.vue'; // นำเข้า MyNavbar คอมโพเนนต์
+import axios from 'axios';
+import MyNavbar from './components/MyNavbar.vue';
 
 export default {
   components: {
-    MyNavbar, // ลงทะเบียนคอมโพเนนต์ MyNavbar เพื่อใช้ในเทมเพลต
+    MyNavbar,
   },
   data() {
     return {
       pokemons: [], // เก็บข้อมูล Pokémon ที่ดึงมาจาก API
       searchTerm: '', // เก็บคำค้นหาจากกล่องค้นหา
+      currentPage: 1, // หน้าเริ่มต้น
+      itemsPerPage: 12, // จำนวน Pokémon ที่แสดงต่อหน้า
     };
   },
   computed: {
     filteredPokemons() {
       // ฟิลเตอร์ Pokémon ตามค่าการค้นหา
-      const term = this.searchTerm.toLowerCase(); // แปลงคำค้นหาเป็นตัวพิมพ์เล็ก
+      const term = this.searchTerm.toLowerCase();
       return this.pokemons.filter(pokemon =>
         pokemon.name.toLowerCase().includes(term) // ตรวจสอบว่าชื่อของ Pokémon มีคำค้นหาหรือไม่
       );
+    },
+    totalPages() {
+      // คำนวณจำนวนหน้าทั้งหมด
+      return Math.ceil(this.filteredPokemons.length / this.itemsPerPage);
+    },
+    paginatedPokemons() {
+      // แสดง Pokémon ตามหน้าปัจจุบัน
+      const start = (this.currentPage - 1) * this.itemsPerPage;
+      const end = start + this.itemsPerPage;
+      return this.filteredPokemons.slice(start, end);
     }
   },
   mounted() {
@@ -54,7 +78,7 @@ export default {
   methods: {
     async fetchPokemons() {
       try {
-        const requests = []; // สร้าง array สำหรับเก็บ HTTP requests
+        const requests = [];
         for (let i = 1; i <= 50; i++) {
           // สร้าง requests เพื่อดึงข้อมูล Pokémon จาก API
           requests.push(axios.get(`https://pokeapi.co/api/v2/pokemon/${i}`));
@@ -67,8 +91,21 @@ export default {
       }
     },
     handleSearch(searchTerm) {
-      // อัพเดตค่าการค้นหา
+      // อัพเดตค่าการค้นหาและรีเซ็ตหน้าเป็น 1
       this.searchTerm = searchTerm;
+      this.currentPage = 1;
+    },
+    prevPage() {
+      // ย้ายไปยังหน้าก่อนหน้า
+      if (this.currentPage > 1) {
+        this.currentPage--;
+      }
+    },
+    nextPage() {
+      // ย้ายไปยังหน้าถัดไป
+      if (this.currentPage < this.totalPages) {
+        this.currentPage++;
+      }
     }
   }
 }
