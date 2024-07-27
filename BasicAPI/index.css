@@ -47,10 +47,6 @@ nav {
     gap: 2rem;
 }
 
-.productCard{
-    
-}
-
 .productThumbmail{
     width: 100%;
     height: 200px;
@@ -63,18 +59,10 @@ nav {
     justify-content: space-between;
 }
 
-.productInfoContainer{
-    
-}
-
 .productName{
     display: block;
     margin-top: 1em;
 }
-
-.porductPrice{}
-
-.addToCart{}
 
 button{
     background-color: rgb(38, 80, 219);
