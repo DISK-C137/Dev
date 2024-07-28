@@ -1,4 +1,5 @@
 <script setup>
+import moment from "moment";
 import { userStore } from "../src/stores/counter" // ดึงข้อมูลจาก Store
 import { ref, onMounted } from "vue"
 
@@ -11,17 +12,21 @@ const getData = async () => {
   //console.log(data) // สามารถเปิดคอมเมนต์เพื่อดีบั๊กได้
 }
 
+const convertDate = (date) => {
+  let year = moment(date).year() + 543
+  return moment().format('DD/MM/'+year)
+}
+
 onMounted(() => {
   getData() // เรียกใช้ฟังก์ชัน getData เมื่อคอมโพเนนต์ถูกติดตั้งแล้ว
 })
 </script>
 
 <template>
-  <h1>Hello World</h1>
   <ul>
     <li v-for="(item, index) in get_data" :key="index">
       <p>{{ item.name }}</p> <!-- แสดงชื่อของผู้ใช้ -->
-      <p>{{ item.createdAt }}</p> <!-- แสดงวันที่สร้าง -->
+      <p>{{ convertDate(item.createdAt) }}</p> <!-- แสดงวันที่สร้าง -->
       <img :src="item.avatar" alt="Avatar"> <!-- แสดงภาพโปรไฟล์ -->
     </li>
   </ul>
