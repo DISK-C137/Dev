@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import axios from "axios";
-import moment from 'moment';
+import moment from "moment";
 
 // กำหนดและสร้าง Store สำหรับจัดการข้อมูลผู้ใช้งาน
 export const userStore = defineStore({
@@ -15,10 +15,9 @@ export const userStore = defineStore({
     async getData() {
       try {
         const res = await axios.get(this.material_url.getmaterial); // ทำการเรียก API เพื่อดึงข้อมูล
-        return res;
         // ตรวจสอบสถานะการตอบกลับจาก API
-        if (res.status == 200 && res.data.status === true) {
-          // ทำการตรวจสอบเพิ่มเติมตามที่ต้องการ
+        if (res.status == 200) {
+          return res;
         } else {
           return false; // คืนค่าเป็น false หากไม่ตรงตามเงื่อนไข
         }
