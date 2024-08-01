@@ -1,18 +1,17 @@
 <script setup>
-import { usePokemonStore } from '@/stores/pokemonStore'; // นำเข้า store จากไฟล์ pokemonStore เพื่อดึงข้อมูลโปเกมอน
-import { ref, onMounted } from 'vue'; // นำเข้า ref และ onMounted จาก Vue
+import { usePokemonStore } from '@/stores/pokemonStore';
+import { ref, onMounted } from 'vue';
 
-let get_data = ref([]); // สร้างตัวแปร get_data เพื่อเก็บข้อมูล โดยใช้ ref สำหรับ reactive data
-const store = usePokemonStore(); // เรียกใช้งาน store
+let get_data = ref([]);
+const store = usePokemonStore();
 
-// ฟังก์ชันที่ใช้ในการดึงข้อมูลจาก store
 const getData = async () => {
-  await store.fetchPokemons(); // เรียกฟังก์ชัน fetchPokemons จาก store เพื่อดึงข้อมูลโปเกมอน
-  get_data.value = store.pokemons; // เก็บข้อมูลที่ดึงมาได้ในตัวแปร get_data
+  await store.fetchPokemons();
+  get_data.value = store.pokemons;
 }
-// เรียกใช้ฟังก์ชัน getData เมื่อคอมโพเนนต์ถูกติดตั้งแล้ว
+
 onMounted(() => {
-  getData(); // เรียกใช้ฟังก์ชัน getData เมื่อคอมโพเนนต์ถูกติดตั้งแล้ว
+  getData();
 });
 </script>
 
